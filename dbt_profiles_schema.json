@@ -1,7 +1,9 @@
 {
     "title": "dbt Profiles",
     "type": "object",
+    "$id": "https://github.com/orchestra-hq/dbt-profiles-jsonschema/blob/main/dbt_profiles_schema.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
     "patternProperties": {
         "^[a-zA-Z_][a-zA-Z0-9_]*$": {
             "description": "The name of the profile. Contains all the details required to connect to your data warehouse. Make sure that this is the same name as the profile indicated in your dbt_project.yml file.",
@@ -63,22 +65,12 @@
                                         "vertica",
                                         "yellowbrick"
                                     ]
-                                },
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "threads": {
-                                    "type": "integer",
-                                    "minimum": 1
-                                },
-                                "path": {
-                                    "type": "string"
                                 }
                             },
                             "required": [
                                 "type"
                             ],
-                            "allOf": [
+                            "oneOf": [
                                 {
                                     "if": {
                                         "properties": {
@@ -104,7 +96,7 @@
                                     }
                                 }
                             ],
-                            "additionalProperties": true
+                            "additionalProperties": false
                         }
                     }
                 }
@@ -115,6 +107,5 @@
             ],
             "additionalProperties": false
         }
-    },
-    "additionalProperties": false
+    }
 }
