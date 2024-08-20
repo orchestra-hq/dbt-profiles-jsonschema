@@ -1,13 +1,11 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Athena Connection Schema",
+    "title": "Athena Schema",
     "type": "object",
     "properties": {
         "type": {
-            "const": "athena"
-        },
-        "schema": {
-            "type": "string"
+            "const": "athena",
+            "description": "Athena Profile: https://docs.getdbt.com/docs/core/connect-data-platform/athena-setup"
         },
         "s3_staging_dir": {
             "type": "string"
@@ -16,7 +14,8 @@
             "type": "string"
         },
         "s3_data_naming": {
-            "type": "string"
+            "type": "string",
+            "description": "The type of naming convention used when writing to S3."
         },
         "region_name": {
             "type": "string"
@@ -24,12 +23,16 @@
         "database": {
             "type": "string"
         },
+        "schema": {
+            "type": "string"
+        },
         "aws_profile_name": {
             "type": "string"
         },
         "num_retries": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "default": 5
         },
         "threads": {
             "type": "integer",

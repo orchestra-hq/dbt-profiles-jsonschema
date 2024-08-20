@@ -22,45 +22,45 @@
                                 "type": {
                                     "type": "string",
                                     "enum": [
-                                        "spark",
-                                        "bigquery",
-                                        "databricks",
-                                        "fabric",
-                                        "postgres",
-                                        "redshift",
-                                        "snowflake",
-                                        "trino",
-                                        "hive",
-                                        "impala",
                                         "athena",
-                                        "glue",
+                                        "bigquery",
                                         "clickhouse",
                                         "databend",
+                                        "databricks",
                                         "decodable",
                                         "doris",
                                         "dremio",
                                         "duckdb",
                                         "exasol",
                                         "extrica",
+                                        "fabric",
                                         "firebolt",
+                                        "glue",
                                         "greenplum",
+                                        "hive",
                                         "ibmdb2",
+                                        "impala",
                                         "infer",
                                         "iomete",
                                         "layer_bigquery",
                                         "materialize",
-                                        "synapse",
-                                        "sqlserver",
                                         "mindsdb",
                                         "mysql",
                                         "oracle",
+                                        "postgres",
+                                        "redshift",
                                         "risingwave",
                                         "rockset",
                                         "singlestore",
+                                        "snowflake",
+                                        "spark",
                                         "sqlite",
+                                        "sqlserver",
                                         "starrocks",
+                                        "synapse",
                                         "teradata",
                                         "tidb",
+                                        "trino",
                                         "upsolver",
                                         "vertica",
                                         "yellowbrick"
@@ -70,7 +70,7 @@
                             "required": [
                                 "type"
                             ],
-                            "anyOf": [
+                            "allOf": [
                                 {
                                     "if": {
                                         "properties": {
@@ -96,7 +96,7 @@
                                     }
                                 }
                             ],
-                            "additionalProperties": false
+                            "additionalProperties": true
                         }
                     }
                 }
