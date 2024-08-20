@@ -31,6 +31,20 @@ Thanks to [dbt-labs and their own repository](https://github.com/dbt-labs/dbt-js
 
 We recommend following the [guide in the dbt-labs repository](https://github.com/dbt-labs/dbt-jsonschema) for linting various dbt YAML files.
 
+### Example
+
+In VSCode, with the [VSCode-YAML extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) installed:
+
+```json
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/orchestra-hq/dbt-profiles-jsonschema/main/dbt_profiles_schema.json": [
+            "profiles.yml",
+        ],
+    },
+}
+```
+
 ## Contribution
 
 PRs / issues are very welcome on this project, especially new connection types that this schema could support.

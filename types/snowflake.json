@@ -4,41 +4,95 @@
     "type": "object",
     "properties": {
         "type": {
-            "const": "snowflake"
+            "const": "snowflake",
+            "description": "Snowflake Profile: https://docs.getdbt.com/docs/core/connect-data-platform/snowflake-setup"
         },
         "account": {
-            "type": "string"
+            "type": "string",
+            "description": "The account to connect to as per Snowflake's documentation."
         },
         "user": {
-            "type": "string"
+            "type": "string",
+            "description": "The user to log in as."
         },
         "password": {
             "type": "string"
         },
-        "role": {
+        "authenticator": {
             "type": "string"
+        },
+        "username": {
+            "type": "string"
+        },
+        "private_key": {
+            "type": "string"
+        },
+        "private_key_path": {
+            "type": "string"
+        },
+        "private_key_passphrase": {
+            "type": "string"
+        },
+        "role": {
+            "type": "string",
+            "description": "The role to assume when running queries as the specified user."
         },
         "database": {
-            "type": "string"
+            "type": "string",
+            "description": "The database that dbt should create models in."
         },
         "warehouse": {
-            "type": "string"
+            "type": "string",
+            "description": "The warehouse to use when building models."
         },
         "schema": {
-            "type": "string"
+            "type": "string",
+            "description": "The schema to build models into by default. Can be overridden with custom schemasF."
         },
         "threads": {
             "type": "integer",
-            "minimum": 1
+            "minimum": 1,
+            "description": "The number of concurrent models dbt should build. Set this to a higher number if using a bigger warehouse."
+        },
+        "client_session_keep_alive": {
+            "type": "boolean",
+            "default": false,
+            "description": "If True, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)."
+        },
+        "query_tag": {
+            "type": "string",
+            "description": "A value with which to tag all queries, for later searching in QUERY_HISTORY view."
+        },
+        "connect_retries": {
+            "type": "integer",
+            "default": 0,
+            "description": "The number of times to retry after an unsuccessful connection."
+        },
+        "connect_timeout": {
+            "type": "integer",
+            "default": 10,
+            "description": "The number of seconds to sleep between failed connection retries."
+        },
+        "retry_on_database_errors": {
+            "type": "boolean",
+            "default": false,
+            "description": "A boolean flag indicating whether to retry after encountering errors of type snowflake.connector.errors.DatabaseError."
+        },
+        "retry_all": {
+            "type": "boolean",
+            "default": false,
+            "description": "A boolean flag indicating whether to retry on all Snowflake connector errors."
+        },
+        "reuse_connections": {
+            "type": "boolean",
+            "default": false,
+            "description": "A boolean flag indicating whether to reuse idle connections to help reduce total connections opened."
         }
     },
     "required": [
         "account",
         "database",
-        "password",
-        "role",
         "schema",
-        "threads",
         "type",
         "user",
         "warehouse"
