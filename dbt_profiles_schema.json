@@ -1,0 +1,118 @@
+{
+    "title": "dbt Profiles",
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+            "type": "object",
+            "properties": {
+                "target": {
+                    "type": "string"
+                },
+                "outputs": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "spark",
+                                        "bigquery",
+                                        "databricks",
+                                        "fabric",
+                                        "postgres",
+                                        "redshift",
+                                        "snowflake",
+                                        "trino",
+                                        "hive",
+                                        "impala",
+                                        "athena",
+                                        "glue",
+                                        "clickhouse",
+                                        "databend",
+                                        "decodable",
+                                        "doris",
+                                        "dremio",
+                                        "duckdb",
+                                        "exasol",
+                                        "extrica",
+                                        "firebolt",
+                                        "greenplum",
+                                        "ibmdb2",
+                                        "infer",
+                                        "iomete",
+                                        "layer_bigquery",
+                                        "materialize",
+                                        "synapse",
+                                        "sqlserver",
+                                        "mindsdb",
+                                        "mysql",
+                                        "oracle",
+                                        "risingwave",
+                                        "rockset",
+                                        "singlestore",
+                                        "sqlite",
+                                        "starrocks",
+                                        "teradata",
+                                        "tidb",
+                                        "upsolver",
+                                        "vertica",
+                                        "yellowbrick"
+                                    ]
+                                },
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "threads": {
+                                    "type": "integer",
+                                    "minimum": 1
+                                },
+                                "path": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "type"
+                            ],
+                            "allOf": [
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "athena"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "$ref": "athena_schema.json"
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "snowflake"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "$ref": "snowflake_schema.json"
+                                    }
+                                }
+                            ],
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "required": [
+                "target",
+                "outputs"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}
