@@ -86,7 +86,7 @@
                                         }
                                     },
                                     "then": {
-                                        "$ref": "athena_schema.json"
+                                        "$ref": "types/athena_schema.json"
                                     }
                                 },
                                 {
@@ -98,7 +98,7 @@
                                         }
                                     },
                                     "then": {
-                                        "$ref": "snowflake_schema.json"
+                                        "$ref": "types/snowflake_schema.json"
                                     }
                                 }
                             ],
