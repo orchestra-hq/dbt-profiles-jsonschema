@@ -1,17 +1,15 @@
-name: Test Schema Changes
-
+name: Validate Schema Changes
 on:
   pull_request:
     branches:
       - main
-
 jobs:
-  test:
+  validate_schema:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Install json
+      - name: Install check-jsonschema
         run: pip install check-jsonschema
       - name: Validate dbt profiles schema
         run: check-jsonschema --schemafile dbt_profiles_schema.json test_profiles.yml
