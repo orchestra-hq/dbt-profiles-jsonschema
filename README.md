@@ -24,7 +24,7 @@ If running the schema check programmatically, you can use the [check-jsonschema]
 
 ```bash
 pip install check-jsonschema
-check-jsonschema --schemafile dbt_profiles_schema.json profiles.yml
+check-jsonschema --schemafile dbt_profiles_schema.json test_profiles.yml
 ```
 
 ## Contribution
