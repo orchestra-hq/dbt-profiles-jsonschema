@@ -1,8 +1,8 @@
 {
-    "title": "dbt Profiles",
+    "title": "dbt Profile",
     "type": "object",
     "$id": "https://github.com/orchestra-hq/dbt-profiles-jsonschema/blob/main/dbt_profiles_schema.json",
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "patternProperties": {
         "^[a-zA-Z_][a-zA-Z0-9_]*$": {
@@ -80,7 +80,7 @@
                                         }
                                     },
                                     "then": {
-                                        "$ref": "types/athena.json"
+                                        "$ref": "#/$defs/athena"
                                     }
                                 },
                                 {
@@ -92,7 +92,7 @@
                                         }
                                     },
                                     "then": {
-                                        "$ref": "types/snowflake.json"
+                                        "$ref": "#/$defs/snowflake"
                                     }
                                 }
                             ],
@@ -104,6 +104,160 @@
             "required": [
                 "target",
                 "outputs"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "$defs": {
+        "athena": {
+            "title": "Athena",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "athena",
+                    "description": "Athena Profile: https://docs.getdbt.com/docs/core/connect-data-platform/athena-setup"
+                },
+                "s3_staging_dir": {
+                    "type": "string"
+                },
+                "s3_data_dir": {
+                    "type": "string"
+                },
+                "s3_data_naming": {
+                    "type": "string",
+                    "description": "The type of naming convention used when writing to S3."
+                },
+                "region_name": {
+                    "type": "string"
+                },
+                "database": {
+                    "type": "string"
+                },
+                "schema": {
+                    "type": "string"
+                },
+                "aws_profile_name": {
+                    "type": "string"
+                },
+                "num_retries": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 5
+                },
+                "threads": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            },
+            "required": [
+                "database",
+                "region_name",
+                "s3_data_dir",
+                "s3_data_naming",
+                "s3_staging_dir",
+                "schema",
+                "threads",
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "snowflake": {
+            "title": "Snowflake",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "snowflake",
+                    "description": "Snowflake Profile: https://docs.getdbt.com/docs/core/connect-data-platform/snowflake-setup"
+                },
+                "account": {
+                    "type": "string",
+                    "description": "The account to connect to as per Snowflake's documentation."
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The user to log in as."
+                },
+                "password": {
+                    "type": "string"
+                },
+                "authenticator": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "private_key": {
+                    "type": "string"
+                },
+                "private_key_path": {
+                    "type": "string"
+                },
+                "private_key_passphrase": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The role to assume when running queries as the specified user."
+                },
+                "database": {
+                    "type": "string",
+                    "description": "The database that dbt should create models in."
+                },
+                "warehouse": {
+                    "type": "string",
+                    "description": "The warehouse to use when building models."
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "The schema to build models into by default. Can be overridden with custom schemasF."
+                },
+                "threads": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "The number of concurrent models dbt should build. Set this to a higher number if using a bigger warehouse."
+                },
+                "client_session_keep_alive": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If True, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)."
+                },
+                "query_tag": {
+                    "type": "string",
+                    "description": "A value with which to tag all queries, for later searching in QUERY_HISTORY view."
+                },
+                "connect_retries": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "The number of times to retry after an unsuccessful connection."
+                },
+                "connect_timeout": {
+                    "type": "integer",
+                    "default": 10,
+                    "description": "The number of seconds to sleep between failed connection retries."
+                },
+                "retry_on_database_errors": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "A boolean flag indicating whether to retry after encountering errors of type snowflake.connector.errors.DatabaseError."
+                },
+                "retry_all": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "A boolean flag indicating whether to retry on all Snowflake connector errors."
+                },
+                "reuse_connections": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "A boolean flag indicating whether to reuse idle connections to help reduce total connections opened."
+                }
+            },
+            "required": [
+                "account",
+                "database",
+                "schema",
+                "type",
+                "user",
+                "warehouse"
             ],
             "additionalProperties": false
         }

@@ -1,0 +1,30 @@
+profiles:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+    athena:
+      type: athena
+      s3_staging_dir: "s3://bucket-name/path/to/staging"
+      s3_data_dir: "s3://bucket-name/path/to/data"
+      s3_data_naming: path
+      region_name: us-west-2
+      database: db_name
+      schema: schema_name
+      threads: 10
+      num_retries: 5
+    snowflake:
+      type: snowflake
+      account: account_name
+      user: user_name
+      password: password
+      role: role_name
+      warehouse: warehouse_name
+      database: database_name
+      schema: schema_name
+      threads: 10
+extra_profiles:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
