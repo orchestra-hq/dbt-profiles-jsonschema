@@ -5,7 +5,10 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
     "patternProperties": {
-        "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+        "^(flags|config)$": {
+            "type": "object"
+        },
+        "^(?!flags$|config$)[a-zA-Z_][a-zA-Z0-9_]*$": {
             "description": "The name of the profile. Contains all the details required to connect to your data warehouse. Make sure that this is the same name as the profile indicated in your dbt_project.yml file.",
             "type": "object",
             "properties": {
