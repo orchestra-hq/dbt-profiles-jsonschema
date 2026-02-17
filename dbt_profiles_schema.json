@@ -148,8 +148,10 @@
                     "default": 5
                 },
                 "threads": {
-                    "type": "integer",
-                    "minimum": 1
+                    "type": [
+                        "integer",
+                        "string"
+                    ]
                 }
             },
             "required": [
@@ -215,8 +217,10 @@
                     "description": "The schema to build models into by default. Can be overridden with custom schemasF."
                 },
                 "threads": {
-                    "type": "integer",
-                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "string"
+                    ],
                     "description": "The number of concurrent models dbt should build. Set this to a higher number if using a bigger warehouse."
                 },
                 "client_session_keep_alive": {
