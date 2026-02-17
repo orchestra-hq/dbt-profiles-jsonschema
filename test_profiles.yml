@@ -22,7 +22,7 @@ profiles:
       warehouse: warehouse_name
       database: database_name
       schema: schema_name
-      threads: 10
+      threads: "10"
 extra_profiles:
   target: dev
   outputs:
