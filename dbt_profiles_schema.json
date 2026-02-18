@@ -143,9 +143,10 @@
                     "type": "string"
                 },
                 "num_retries": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 5
+                    "type": [
+                        "integer",
+                        "string"
+                    ]
                 },
                 "threads": {
                     "type": [
@@ -224,8 +225,10 @@
                     "description": "The number of concurrent models dbt should build. Set this to a higher number if using a bigger warehouse."
                 },
                 "client_session_keep_alive": {
-                    "type": "boolean",
-                    "default": false,
+                    "type": [
+                        "boolean",
+                        "string"
+                    ],
                     "description": "If True, the snowflake client will keep connections for longer than the default 4 hours. This is helpful when particularly long-running queries are executing (> 4 hours)."
                 },
                 "query_tag": {
@@ -233,28 +236,38 @@
                     "description": "A value with which to tag all queries, for later searching in QUERY_HISTORY view."
                 },
                 "connect_retries": {
-                    "type": "integer",
-                    "default": 0,
+                    "type": [
+                        "integer",
+                        "string"
+                    ],
                     "description": "The number of times to retry after an unsuccessful connection."
                 },
                 "connect_timeout": {
-                    "type": "integer",
-                    "default": 10,
+                    "type": [
+                        "integer",
+                        "string"
+                    ],
                     "description": "The number of seconds to sleep between failed connection retries."
                 },
                 "retry_on_database_errors": {
-                    "type": "boolean",
-                    "default": false,
+                    "type": [
+                        "boolean",
+                        "string"
+                    ],
                     "description": "A boolean flag indicating whether to retry after encountering errors of type snowflake.connector.errors.DatabaseError."
                 },
                 "retry_all": {
-                    "type": "boolean",
-                    "default": false,
+                    "type": [
+                        "boolean",
+                        "string"
+                    ],
                     "description": "A boolean flag indicating whether to retry on all Snowflake connector errors."
                 },
                 "reuse_connections": {
-                    "type": "boolean",
-                    "default": false,
+                    "type": [
+                        "boolean",
+                        "string"
+                    ],
                     "description": "A boolean flag indicating whether to reuse idle connections to help reduce total connections opened."
                 }
             },

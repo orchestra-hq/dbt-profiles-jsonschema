@@ -23,6 +23,8 @@ profiles:
       database: database_name
       schema: schema_name
       threads: "10"
+      client_session_keep_alive: "{{ env_var('CLIENT_SESSION_KEEP_ALIVE', false) }}"
+      retry_on_database_errors: true
 extra_profiles:
   target: dev
   outputs:
